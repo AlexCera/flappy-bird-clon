@@ -1,0 +1,7 @@
+{
+  "name": "flappy-bird-clon",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
