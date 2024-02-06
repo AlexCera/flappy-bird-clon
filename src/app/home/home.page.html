@@ -1,20 +1,46 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <main class="d-flex-center wrapper">
+    <section class="background" [ngStyle]="{
+      'background-size':container_width+'px'+container_height+'px',
+      'width': container_width+ 'px',
+      'height': container_height+ 'px'
+    }">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      <!-- ===== Juego sin iniciar -- Uninitialized game ===== -->
+      <div *ngIf="!gameStarted" class="d-flex-center text">
+        <section class="d-flex-center flex-column">
+          <!-- ===== logo juego -- game logo ===== -->
+          <img src="/assets/images/bird.gif" class="bird-logo" alt="logo">
+
+          <!-- ===== Primer juego -- First game ===== -->
+          <span *ngIf="!gameOver">
+            <label class="subtext">Clon</label>
+            Flappy Bird
+          </span>
+
+          <!-- ===== Juego finalizado -- Finished game ===== -->
+          <span *ngIf="gameOver">
+            <label class="subtext">Juego Finalizado</label>
+            Score : {{score}}
+          </span>
+
+
+          <!-- ===== Comenzar -- Start ===== -->
+          <ion-button class="ion-margin-top" color="warning" mode="ios" shape="round">
+            {{!gameOver ? "Jugar" : "Reintentar"}}
+            <ion-icon name="play" slot="end"></ion-icon>
+          </ion-button>
+
+          <!-- ===== Música -- Music ===== -->
+          <ion-button (click)="playMusic()" class="ion-margin-top" color="success" mode="ios" shape="round">            
+            <ion-icon [name]="musicActive ? 'volume-mute-outline' : 'volume-high-outline'" slot="end"></ion-icon>
+          </ion-button>
+
+        </section>
+      </div>
+
+    </section>
+  </main>
+
 </ion-content>

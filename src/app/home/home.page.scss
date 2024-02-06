@@ -1,35 +1,41 @@
-.wrapper{
+.wrapper {
   height: 100vh;
   background: linear-gradient(to bottom, #0c89ff, #92edff)
 }
 
-.d-flex-center{
+.d-flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.background{
+.flex-column{
+  flex-direction: column;
+}
+
+.background {
   background: url(/assets/images/bg-flappy.jpeg) no-repeat;
   position: relative;
   overflow: hidden;
 }
 
-.text{
+.text {
   font-family: 'Game';
   text-align: center;
   height: 70vh;
   animation: float 2s ease-in-out infinite;
   font-size: 2em;
   color: white;
+  letter-spacing: 5px;
 
-  .subtext{
+  .subtext {
     font-size: 19px;
     padding-bottom: 10px;
+    display: block;
   }
 }
 
-.score{
+.score {
   font-family: 'Game';
   position: absolute;
   transform: translate(-50%, -50%);
@@ -39,11 +45,9 @@
   color: white;
 }
 
-.bird-logo{
- width: 70px;
+.bird-logo {
+  width: 70px;
+  display: block;
+  user-select: none;
+  cursor: none;
 }
-
-
-
-
-
