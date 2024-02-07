@@ -1,6 +1,6 @@
 <ion-content>
 
-  <main class="d-flex-center wrapper">
+  <main class="d-flex-center wrapper" (click)="jump()">
     <section class="background" [ngStyle]="{
       'background-size':container_width+'px'+container_height+'px',
       'width': container_width+ 'px',
@@ -27,7 +27,7 @@
 
 
           <!-- ===== Comenzar -- Start ===== -->
-          <ion-button class="ion-margin-top" color="warning" mode="ios" shape="round">
+          <ion-button (click)="startGame()" class="ion-margin-top" color="warning" mode="ios" shape="round">
             {{!gameOver ? "Jugar" : "Reintentar"}}
             <ion-icon [name]="!gameOver ? 'play': 'refresh'" slot="end"></ion-icon>
           </ion-button>
@@ -41,8 +41,33 @@
       </div>
 
       <!-- ===== Juego iniciado -- Initialized game ===== -->
-      <div *ngIf="gameStarted" class="d-flex-center text">
+      <div *ngIf="gameStarted">
 
+        <span class="score">{{score}}</span>
+
+        <!-- ===== Obstaculo de arriba -- Up Obstacle ===== -->
+        <app-obstacle
+          [height]="obstacle_height"
+          [width]="obstacle_width"
+          [left]="obstacle_position"
+          [top]="0"
+          [rotation]="180"
+        ></app-obstacle>
+
+        <!-- ===== Personaje -- Character ===== -->
+        <app-bird 
+          [height]="bird_height"
+          [width]="bird_width"
+          [top]="bird_position"
+        ></app-bird>
+
+        <!-- ===== Obstaculo de abajo --  Down Obstacle ===== -->
+        <app-obstacle 
+        [height]="container_height - obstacle_gap - obstacle_height" 
+        [width]="obstacle_width" 
+        [left]="obstacle_position" 
+        [top]="container_height - (obstacle_height + (container_height - obstacle_gap - obstacle_height))"
+        [rotation]="0"></app-obstacle>
       </div>
 
     </section>
