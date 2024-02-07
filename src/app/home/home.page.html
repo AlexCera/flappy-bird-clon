@@ -29,15 +29,20 @@
           <!-- ===== Comenzar -- Start ===== -->
           <ion-button class="ion-margin-top" color="warning" mode="ios" shape="round">
             {{!gameOver ? "Jugar" : "Reintentar"}}
-            <ion-icon name="play" slot="end"></ion-icon>
+            <ion-icon [name]="!gameOver ? 'play': 'refresh'" slot="end"></ion-icon>
           </ion-button>
 
           <!-- ===== Música -- Music ===== -->
-          <ion-button (click)="playMusic()" class="ion-margin-top" color="success" mode="ios" shape="round">            
+          <ion-button (click)="playMusic()" class="ion-margin-top" color="success" mode="ios" shape="round">
             <ion-icon [name]="musicActive ? 'volume-mute-outline' : 'volume-high-outline'" slot="end"></ion-icon>
           </ion-button>
 
         </section>
+      </div>
+
+      <!-- ===== Juego iniciado -- Initialized game ===== -->
+      <div *ngIf="gameStarted" class="d-flex-center text">
+
       </div>
 
     </section>

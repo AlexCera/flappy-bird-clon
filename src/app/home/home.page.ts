@@ -20,8 +20,14 @@ export class HomePage implements OnInit {
 
   score: number = 0; // puntuación final
 
-  musicActive: boolean = false;
-  song = new Audio('/assets/music/ionic-bird-track.MP3');
+  musicActive: boolean = false; // ¿música activa?
+  song = new Audio('/assets/music/ionic-bird-track.MP3'); // ruta de la canción del juego
+
+  bird_height: number = 38;
+  bird_width: number = 43;
+  bird_position: number = 300;
+
+  bird_interval!: NodeJS.Timeout;
 
   constructor(
     private platform: Platform
@@ -29,6 +35,15 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.setContainerSize();
+    this.bird_interval = setInterval(this.setGravity.bind(this), 25);
+  }
+
+
+  /* ========== Comenzar juego ========== */
+  startGame() {
+    this.gameStarted = true;
+    this.gameOver = true;
+    this.score = 0;
   }
 
   /* ========== Tamaño del contenedor del juego ========== */
@@ -37,6 +52,11 @@ export class HomePage implements OnInit {
     this.container_width = this.platform.width() < 576 ? this.platform.width() : 576;
   }
 
+  /* ========== Agregar gravedad al juego ========== */
+  setGravity() {
+    let gravity = 5.0;
+    if (this.gameStarted) this.bird_position += gravity;
+  }
 
   playMusic() {
     this.musicActive = !this.musicActive;
